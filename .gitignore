@@ -1,0 +1,28 @@
+# База данных
+*.sqlite3
+*.db
+
+# Питоновские кэши
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Среда разработки
+.vscode/
+.idea/
+*.swp
+
+# Статика/медиа (если собираются)
+/staticfiles/
+/mediafiles/
+
+# Логи
+*.log
+
+# macOS
+.DS_Store
+
+# ВАЖНО: если вдруг кто-то создаст venv внутри проекта
+venv/
+env/
+.venv/
