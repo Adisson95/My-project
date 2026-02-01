@@ -1,0 +1,23 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'register_enter/css/style.css' %}">
+    <title>Document</title>
+</head>
+<body>
+    <form method="POST">
+        {% csrf_token %}
+        <div class="div_form_label">
+        <label class="form-label">{{ form.name.label }}</label>
+        {{ form.name }}
+            
+        <label class="form-label">{{ form.email.label }}</label>
+        {{ form.email }}
+        <button type="submit"> Отправить </button>
+        </div>
+    </form>
+</body>
+</html>
