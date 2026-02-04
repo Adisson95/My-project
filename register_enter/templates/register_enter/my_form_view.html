@@ -7,16 +7,14 @@
     <link rel="stylesheet" href="{% static 'register_enter/css/style.css' %}">
     <title>Document</title>
 </head>
-<body>
-    <form method="POST">
+<body class="body-enter">
+    <form method="POST"> 
         {% csrf_token %}
-        <div class="div_form_label">
-        <label class="form-label">{{ form.name.label }}</label>
-        {{ form.name }}
+        <div class="div_form">
+            <h3>Log in</h3>
+            {{ form.as_p }}
             
-        <label class="form-label">{{ form.email.label }}</label>
-        {{ form.email }}
-        <button type="submit"> Отправить </button>
+            <button type="submit" class="but_submit">Войти</button>
         </div>
     </form>
 </body>

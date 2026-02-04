@@ -3,9 +3,14 @@ from django.http import HttpResponse
 from .forms import MyForm
 from .forms import EnterForm
 
+date = {}
+counter = 1
+register = False
+enter = False
 
 def index(request):
     return render(request, 'register_enter/index.html') 
+
 
 def enter_view(request):
     if request.method == 'POST':
@@ -14,9 +19,13 @@ def enter_view(request):
         if form.is_valid():
             email = form.cleaned_data['email']
             name = form.cleaned_data['name']
-
-            message = 'Успешный вход!'
-            return HttpResponse(message)
+            if register == True:
+                if enter == False:
+                    if date.get('ide') == counter and date.get('password') == name and  date.get('email') == email: 
+                        enter = True 
+                        return render(request, 'register_enter/index.html')       
+                else:
+                    return render(request, 'register_enter/index.html')       
     else:
         form = EnterForm()
 
@@ -27,12 +36,21 @@ def my_form_view(request):
         form = MyForm(request.POST)
 
         if form.is_valid():
+            global register
+            global counter
             name = form.cleaned_data['name']
             email = form.cleaned_data['email']
             age = form.cleaned_data['age']
-
-            message = f'привет {name} валидация прошла успешно!'
-            return HttpResponse(message)
+            if register == False:
+                date['ide'] = counter
+                date['password'] = name
+                date['email'] = email
+                date['age'] = age
+                counter += 1
+                register = True
+                return render(request, 'register_enter/enter_view.html', context={"form": form})
+            else:
+                return render(request, 'register_enter/index.html') 
     else:
         form = MyForm()
 
